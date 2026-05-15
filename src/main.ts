@@ -6,11 +6,13 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+camera.aspect = window.innerWidth / window.innerHeight;
+camera.updateProjectionMatrix();
+
 document.body.appendChild(renderer.domElement);
 
 const controls = new OrbitControls(camera, renderer.domElement);
-
-
 const geometry = new THREE.BoxGeometry(2.5, 2.5, 6); 
 const material = new THREE.MeshStandardMaterial({ color: 0x2a5f9e, metalness: 0.6, roughness: 0.4 });
 const container = new THREE.Mesh(geometry, material);
