@@ -21,9 +21,9 @@ scene.add(new THREE.AmbientLight(0xffffff, 0.6));
 camera.position.set(0, 5, 12);
 
 const loader = new GLTFLoader();
-loader.load('/assets/models/container_service_hub.gltf', (gltf) => {
+loader.load('container_service_hub.glb', (gltf) => {
   console.log("Model loaded:", gltf);
-  const model = gltf.scene;
+  const model = gltf.scene
   scene.add(model);
 },
 (progress) => {
