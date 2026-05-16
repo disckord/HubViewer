@@ -1,12 +1,13 @@
+import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import HubModelManager from './HubModelManager';
-import HubMaterialManager from './HubMaterialManager';
 import SkyboxManager from './SkyboxManager';
+import UIManager from './UIManager';
 const scene = new THREE.Scene();
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ antialias: true});
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 500);
 camera.position.set(-4, 2, -8);
 
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -14,18 +15,18 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 document.body.appendChild(renderer.domElement);
 
 const controls = new OrbitControls(camera, renderer.domElement);
-
+controls.maxDistance = 10;
+controls.minDistance = 5;
+controls.enablePan = false;
 
 SkyboxManager.init("qwantani_noon_4k.hdr", scene, renderer);
-HubMaterialManager.init();
-HubModelManager.init();
+UIManager.init();
 
 const loader = new GLTFLoader();
 loader.load('container_service_hub.glb', (gltf) => {
   console.log("Model loaded:", gltf);
   const model = gltf.scene
-  HubModelManager.processHubModel(model);
-  HubMaterialManager.processHubMaterials(model);
+  HubModelManager.init(model);
   scene.add(model);
 },
 (progress) => {

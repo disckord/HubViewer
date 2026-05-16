@@ -16,7 +16,7 @@ export default class SkyboxManager{
         
             scene.environment = envMap;
             scene.background = envMap;
-            scene.environmentIntensity = 1.0;
+            scene.environmentIntensity = 1.2;
             scene.backgroundBlurriness = 0.0;
             scene.backgroundIntensity = 1.0;
         
