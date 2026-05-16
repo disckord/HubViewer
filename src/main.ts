@@ -18,7 +18,10 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.maxDistance = 10;
 controls.minDistance = 5;
 controls.enablePan = false;
-
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.autoRotate = true;
+controls.autoRotateSpeed = -0.5;
 SkyboxManager.init("qwantani_noon_4k.hdr", scene, renderer);
 UIManager.init();
 
