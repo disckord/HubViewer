@@ -12,6 +12,8 @@ camera.position.set(-4, 2, -8);
 
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.toneMapping = THREE.ReinhardToneMapping;
+renderer.toneMappingExposure = 2.0;
 document.body.appendChild(renderer.domElement);
 
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -24,6 +26,7 @@ controls.autoRotate = true;
 controls.autoRotateSpeed = -0.5;
 SkyboxManager.init("qwantani_noon_4k.hdr", scene, renderer);
 UIManager.init();
+UIManager.gui.add(controls, "autoRotate").name("Rotate Camera");
 
 const loader = new GLTFLoader();
 loader.load('container_service_hub.glb', (gltf) => {

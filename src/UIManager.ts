@@ -1,7 +1,7 @@
 import GUI from 'lil-gui';
 import HubModelManager, { RampDoorMode } from './HubModelManager';
 export default class UIManager{
-    private static gui: GUI;
+    public static gui: GUI;
     public static uiVarRampDoorMode: RampDoorMode = RampDoorMode.CLOSED;
     public static uiVarWindowOpen: boolean = false;
     public static uiVarDoorsOpen: boolean = false;
@@ -26,7 +26,7 @@ export default class UIManager{
 
     public static init(){
         UIManager.gui = new GUI();
-        UIManager.gui.title("Service Hub Controls");
+        UIManager.gui.title("Options");
         UIManager.gui.add(UIManager, "uiVarRampDoorMode", ["Closed", "Porch", "Ramp"]).name("Ramp Door Mode").onChange(UIManager.onRampDoorModeChange);
         UIManager.gui.add(UIManager, "uiVarWindowOpen").name("Open Window").onChange(UIManager.onWindowOpenChange)
         UIManager.gui.add(UIManager, "uiVarDoorsOpen").name("Open Doors").onChange(UIManager.onDoorsOpenChange)
